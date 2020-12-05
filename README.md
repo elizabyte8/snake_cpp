@@ -1,1 +1,1 @@
-# snake_cpp
+Simple console snake (without graphics libraries).
