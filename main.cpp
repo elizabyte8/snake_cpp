@@ -1,9 +1,14 @@
+/************************************************************
+*** Title: sNakE GaMe ***************************************
+*** Author: cold_summer aka Elizabeth Maslennikova **********
+*** Date: 08/12/2020 ****************************************
+*** Description: Save my farm from rodents invasion! ********
+************************************************************/
 
+#include <iostream>
 #include <windows.h>
 #include <stdlib.h>
 #include <conio.h>
-#include <iostream>
-#include <vector>
 #include <ctime>
 
 using namespace std;
