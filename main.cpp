@@ -47,7 +47,6 @@ class board // START of class
 
 board ()// START of constructor
  {// fills the board with symbols
-
  for(int columns = 0; columns <= HORIZONTAL ; columns++)
   {
    board_array[0][columns] = '-';
@@ -184,6 +183,7 @@ class snake// START of class
  }// END of method
 */
 
+	
  bool collision_with_obstacles(obstacles o)// START of method
  {// checks if the snake hit obstacles
    for(int i = 0; i < 4; i++)// 4 different RANDOM obstacles: '#', '>', '+'
@@ -286,7 +286,7 @@ int main()
    Sleep(300);  
   }// END of while loop 
   for(int i = 0; i < score; i++)
-  free(s.tail + i);
+  free(s.tail + i);// returns borrowed memory ot OS
 
 
  if(game_over == true)
