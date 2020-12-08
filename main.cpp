@@ -207,7 +207,6 @@ class mouse: public board// START of class
    board_array[s.spoint.y][s.spoint.x] = 'O';// sets new points of snake in board array  
    board_array[m.mpoint.y][m.mpoint.x] = '*';// sets new points of mouse in board array
 
-     
   for(int rows = 0; rows <= VERTICAL; rows++)
    {   
     std::cout <<"\t\t\t\t";// for the board to be in the ~~middle 
