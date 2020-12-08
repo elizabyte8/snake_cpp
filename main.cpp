@@ -246,8 +246,8 @@ int main()// START of MAIN
  o.random_types();// sets different types of random obstacles
 	
 for(int i = 0; i < 5; i++)// controls the mouse not be printed within borders' lines and obstacles
-      if((mpoint.y == VERTICAL && mpoint.x == HORIZONTAL) && (mpoint.y == o.opoint[i].y && mpoint.x == o.opoint[i].x))
-       mpoint = randomizer(&mpoint);// sets random point for new mouse  
+      if((m.mpoint.y == VERTICAL && m.mpoint.x == HORIZONTAL) && (m.mpoint.y == o.opoint[i].y && m.mpoint.x == o.opoint[i].x))
+       m.mpoint = randomizer(&m.mpoint);// sets random point for new mouse  
 
  game_over = false;
 
