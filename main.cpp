@@ -71,7 +71,7 @@ class obstacles// START of class
  {// creates different types of obstacles (there are 3 types of them: '#','+' and '>')
  int num_of_obstacles = 5;
   do
-   {
+   { 
     for(int i = 0; i < 4; i++)// queue of arrays of datatype points 'opoint' (obstacles' point)
     {
      int random = rand()%3;// random type of obstacle for 'if operator'
