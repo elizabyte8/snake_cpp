@@ -1,14 +1,9 @@
-/************************************************************
-*** Title: sNakE GaMe ***************************************
-*** Author: cold_summer aka Elizabeth Maslennikova **********
-*** Date: 08/12/2020 ****************************************
-*** Description: Save my farm from rodents invasion! ********
-************************************************************/
 
-#include <iostream>
 #include <windows.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <iostream>
+#include <vector>
 #include <ctime>
 
 using namespace std;
@@ -18,7 +13,7 @@ const int HORIZONTAL = VERTICAL*2;
 
 static int score = 2;
 static char board_array[VERTICAL][HORIZONTAL], users_input;
-static bool game_over, quit;
+static bool game_over;
 typedef struct axis_points// START of struct
 {
 int x, y;
@@ -47,6 +42,7 @@ class board // START of class
 
 board ()// START of constructor
  {// fills the board with symbols
+
  for(int columns = 0; columns <= HORIZONTAL ; columns++)
   {
    board_array[0][columns] = '-';
@@ -183,7 +179,6 @@ class snake// START of class
  }// END of method
 */
 
-	
  bool collision_with_obstacles(obstacles o)// START of method
  {// checks if the snake hit obstacles
    for(int i = 0; i < 4; i++)// 4 different RANDOM obstacles: '#', '>', '+'
@@ -271,7 +266,6 @@ int main()
    m.mpoint = randomizer(&m.mpoint);
 
  game_over = false;
- quit = false;
 
   while(!game_over)// START of snake-game
   {       
@@ -286,7 +280,7 @@ int main()
    Sleep(300);  
   }// END of while loop 
   for(int i = 0; i < score; i++)
-  free(s.tail + i);// returns borrowed memory ot OS
+  free(s.tail + i);
 
 
  if(game_over == true)
