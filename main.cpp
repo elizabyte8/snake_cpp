@@ -110,8 +110,6 @@ class snake// START of class
  void setHead()// START of a method to change the values of snake's head
  {// in accordance with the user's input
 	// checks user's input and impacts on snake's head location  
-   while(kbhit())
-  {
    switch(getch())   
    { 
      case 'W':
@@ -134,7 +132,6 @@ class snake// START of class
       game_over = true;
      break; 
     }  
-  }   
  }// END of method
 
 
@@ -179,7 +176,7 @@ class snake// START of class
  }// END of method
 */
 
- bool collision_with_obstacles(obstacles o)// START of method
+ void collision_with_obstacles(obstacles o)// START of method
  {// checks if the snake hit obstacles
    for(int i = 0; i < 4; i++)// 4 different RANDOM obstacles: '#', '>', '+'
     for(int j = 0; j < 8; j++)// 8 symbols each one: "########", ">>>>>>>>", "++++++++"
@@ -277,7 +274,6 @@ int main()
   //s.collision_with_tail();
      s.check_borders();
      s.collision_with_obstacles(o); 
-   Sleep(300);  
   }// END of while loop 
   for(int i = 0; i < score; i++)
   free(s.tail + i);
