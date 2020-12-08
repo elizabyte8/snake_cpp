@@ -27,21 +27,13 @@ int x, y;
  }// END of func
 
 
- void setNew_points (points *opoint)// START of method, (obstacles' points)
- {
-  for(int i = 0; i < 4; i++)// queue of arrays of datatype points 'rpoint'
-   opoint[i] = randomizer(opoint + i);// gives to each x and y random values
- }// END of method
-
-
 class board // START of class
 {
   public:
 
 board ()// START of constructor
- {// fills the board with symbols
-
- for(int columns = 0; columns <= HORIZONTAL ; columns++)
+ {
+ for(int columns = 0; columns <= HORIZONTAL ; columns++)// fills the board with symbols
   {
    board_array[0][columns] = '-';
    board_array[VERTICAL -1][columns] = '_';
@@ -63,7 +55,7 @@ class obstacles// START of class
 
   void setNew_points()// START of method
  {
-   for(int i = 0; i < 4; i++)// queue of arrays of datatype points 'rpoint'
+   for(int i = 0; i < 4; i++)// queue of arrays of datatype points 'οpoint' (obstacles' point)
     opoint[i] = randomizer(opoint + i);// gives to each x and y random values
  }// END of method
 
@@ -73,10 +65,10 @@ class obstacles// START of class
  int num_of_obstacles = 5;
   do
    {
-    for(int i = 0; i < 4; i++)// queue of arrays of datatype points 'rpoint'
+    for(int i = 0; i < 4; i++)// queue of arrays of datatype points 'opoint' (obstacles' point)
     {
      int random = rand()%3;// random type of obstacle for 'if operator'
-      for(int j = 0; j < 8; j++)// fills columns with 5 symbols: "########", "++++++++", ">>>>>>>>"
+      for(int j = 0; j < 8; j++)// fills columns with 8 symbols: "########", "++++++++", ">>>>>>>>"
       {
        if(random == 0)
         board_array[opoint[i].y][opoint[i].x + j]  = '#';
@@ -95,8 +87,8 @@ class obstacles// START of class
 class snake// START of class
 {
   public:
-  points spoint;// var of datatype struct points stands for 'snake's points'
-  points *tail = (points*)malloc(score*sizeof (points));
+  points spoint;// var of datatype struct points stands for 'snake's point'
+  points *tail = (points*)malloc(score*sizeof (points));// array of pointers, 'coz user's success is dynamical, 'score' is not constant
 
   snake ()// START of constructor for initial snake's head values
  {// for them to be in the middle of the board
@@ -107,7 +99,6 @@ class snake// START of class
 
  void setHead()// START of a method to change the values of snake's head
  {// in accordance with the user's input
-	// checks user's input and impacts on snake's head location  
    switch(getch())   
    { 
      case 'W':
@@ -134,7 +125,7 @@ class snake// START of class
 
 
  void setTail()// START of method
- {// sets tail for the snake with malloc(), 'coz user's success is something dynamic and not constant
+ {
     tail[0].y = spoint.y;
     tail[0].x = spoint.x;
     board_array[((tail)->y)][((tail)->x)] = 'o';
@@ -143,12 +134,11 @@ class snake// START of class
   { 
    tail[i].y = tail[i - 1].y;
    tail[i].x = tail[i - 1].x;  
-  board_array[((tail + i)->y)][((tail + i)->x)] = 'o';
+  board_array[((tail + i)->y)][((tail + i)->x)] = 'o';// sets new points of tail in board array
    if(i == score)  
     board_array[((tail + i)->y)][((tail + i)->x)] = ' '; 
   // clears old points of tail (for them not be printed again)
   }
-  // sets new points of tail in board array
  }// END of method
   
 
@@ -186,7 +176,7 @@ class snake// START of class
 class mouse: public board// START of class
 {
   public:
-  points mpoint;// stands for mouse's points
+  points mpoint;// stands for mouse's point
 
 
   mouse()// START of constructor
@@ -200,9 +190,10 @@ class mouse: public board// START of class
    if(mpoint.y == s.spoint.y && mpoint.x == s.spoint.x)// checks if snake ate mouse
    { 
     mpoint = randomizer(&mpoint);// sets random point for new mouse  
-     for(int i = 0; i < 5; i++)
-      if((mpoint.y == VERTICAL && mpoint.x == HORIZONTAL) && (mpoint.y == o.opoint[i].y && mpoint.x == o.opoint[i].x ))
+     for(int i = 0; i < 5; i++)// controls the mouse not be printed within borders' lines and obstacles
+      if((mpoint.y == VERTICAL && mpoint.x == HORIZONTAL) && (mpoint.y == o.opoint[i].y && mpoint.x == o.opoint[i].x))
        mpoint = randomizer(&mpoint);// sets random point for new mouse  
+	   
        o.setNew_points();// sets random points for new obstacles
        o.random_types();// sets random types for new obstacles
        score++;// increases user's success
@@ -213,10 +204,9 @@ class mouse: public board// START of class
 
   void draw(obstacles o,snake s, mouse m, board b)// START of func
  {// draws the filled array board     
-  // sets new points of snake in board array  
-   board_array[s.spoint.y][s.spoint.x] = 'O'; 
-  // sets new points of mouse in board array
-   board_array[m.mpoint.y][m.mpoint.x] = '*';
+   board_array[s.spoint.y][s.spoint.x] = 'O';// sets new points of snake in board array  
+   board_array[m.mpoint.y][m.mpoint.x] = '*';// sets new points of mouse in board array
+
      
   for(int rows = 0; rows <= VERTICAL; rows++)
    {   
@@ -244,7 +234,7 @@ class mouse: public board// START of class
  }// END of func
 
 
-int main()
+int main()// START of MAIN
 {  
   srand(time(NULL));
 
@@ -254,10 +244,10 @@ int main()
  obstacles o;// object of a class 'obstacles' & its constructor
  o.setNew_points();// sets new points for obstacles
  o.random_types();// sets different types of random obstacles
-
- for(int i = 0; i < 4; i++)// checks if points went through the walls
-  if((m.mpoint.y == VERTICAL && m.mpoint.x == HORIZONTAL) && (m.mpoint.y == o.opoint[i].y && m.mpoint.x == o.opoint[i].x))
-   m.mpoint = randomizer(&m.mpoint);
+	
+for(int i = 0; i < 5; i++)// controls the mouse not be printed within borders' lines and obstacles
+      if((mpoint.y == VERTICAL && mpoint.x == HORIZONTAL) && (mpoint.y == o.opoint[i].y && mpoint.x == o.opoint[i].x))
+       mpoint = randomizer(&mpoint);// sets random point for new mouse  
 
  game_over = false;
 
@@ -272,9 +262,9 @@ int main()
      s.check_borders();
      s.collision_with_obstacles(o); 
   }// END of while loop 
-  for(int i = 0; i < score; i++)
+	
+  for(int i = 0; i < score; i++)// returns borrowed memory to OS
   free(s.tail + i);
-
 
  if(game_over == true)
   {
@@ -287,5 +277,4 @@ int main()
     std::cout <<" Hope to see you soon!\nBye ~";
   }
 return 0; 
-}
-// END of MAIN func
+}// END of MAIN
