@@ -136,8 +136,7 @@ class snake// START of class
 
 
  void setTail()// START of method
- {// sets tail for the snake with malloc(), 'coz user's success is
-  // something dynamic and not constant
+ {// sets tail for the snake with malloc(), 'coz user's success is something dynamic and not constant
     tail[0].y = spoint.y;
     tail[0].x = spoint.x;
     board_array[((tail)->y)][((tail)->x)] = 'o';
