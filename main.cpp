@@ -4,7 +4,6 @@
 *** Date: 30/11/2020 ****************************************
 *** Description: Save my farm from rodents invasion *********
 ************************************************************/
-
 #include <windows.h>
 #include <stdlib.h>
 #include <conio.h>
