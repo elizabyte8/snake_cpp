@@ -10,14 +10,12 @@
 #include <ctime>
 #include <iostream>
 
-using namespace std;
-
 const int VERTICAL = 25;
 const int HORIZONTAL = VERTICAL*2;
 
-static int score = 2;
-static char board_array[VERTICAL][HORIZONTAL], users_input;
-static bool game_over;
+int score = 2;
+char board_array[VERTICAL][HORIZONTAL], users_input;
+bool game_over;
 typedef struct axis_points// START of struct
 {
 int x, y;
@@ -179,7 +177,7 @@ class snake// START of class
 };// END of class
 
 
-class mouse: public board// START of class
+class mouse// START of class
 {
   public:
   points mpoint;// stands for mouse's point
